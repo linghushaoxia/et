@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="4.5"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="com.linghushaoxia.et.translate.toolbar">
+            <command
+                  commandId="com.linghushaoxia.et.translate.popupActionCommand"
+                  icon="icons/menu.png"
+                  style="push"
+                  tooltip="自然语言翻译">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="com.linghushaoxia.et.translate.popupActionCommand"
+            name="name">
+         <defaultHandler
+               class="com.linghushaoxia.et.translate.view.OpenDialogHandler">
+            <parameter
+                  name="WordsTranslation.parameter1"
+                  value="WordsTranslation.parameter1">
+            </parameter>
+         </defaultHandler>
+      </command>
+   </extension>
+
+</plugin>

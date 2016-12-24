@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: Et-translate;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.linghushaoxia.et.translate.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.core.resources,
+ org.eclipse.jface.text,
+ org.eclipse.ui.texteditor
+Export-Package: 
+ com.linghushaoxia.et.translate,
+ com.linghushaoxia.et.translate.cache,
+ com.linghushaoxia.et.translate.model,
+ com.linghushaoxia.et.translate.parse.xml,
+ com.linghushaoxia.et.translate.search,
+ com.linghushaoxia.et.translate.util,
+ com.linghushaoxia.et.translate.view
