@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import com.linghushaoxia.et.translate.Activator;
 import com.linghushaoxia.et.translate.search.Search;
+import com.linghushaoxia.et.translate.util.CodeUtil;
 import com.linghushaoxia.et.translate.util.PropertiesUtil;
 import com.linghushaoxia.et.translate.util.ValidateUtil;
 
@@ -122,10 +123,17 @@ public class QueryDialog extends Dialog{
 		queryButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-			    	//待查询的单词
+			    	/**
+			    	 * 基本校验
+			    	 */
+			       //待查询的单词
 				String qtext = queryText.getText();
 				if(ValidateUtil.isBlank(qtext)){
 					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "提示", "请输入要查询的内容");
+					return;
+				}
+				if(CodeUtil.containsChinese(qtext)){
+					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "提示", "暂不支持翻译中文");
 					return;
 				}
 				//查询
