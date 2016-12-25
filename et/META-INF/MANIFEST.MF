@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
+Bundle-Name: translate
 Bundle-SymbolicName: Et-translate;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: com.linghushaoxia.et.translate.Activator
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: 令狐少侠
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.resources,
  org.eclipse.jface.text,

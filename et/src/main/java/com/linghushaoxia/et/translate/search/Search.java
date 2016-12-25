@@ -24,8 +24,8 @@ public class Search {
 	//返回结果
 	String result ="";
 	Dict dict=null;
-	//除去开头结尾的空格
-	word = word.trim();
+	//除去开头结尾的空格,并转为小写,金山词霸不识别大写
+	word = word.trim().toLowerCase();
 	//从缓存获取
 	dict=DictCache.getDict(word);
 	/**
