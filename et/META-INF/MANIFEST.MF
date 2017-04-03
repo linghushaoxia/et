@@ -19,4 +19,6 @@ Export-Package:
  com.linghushaoxia.et.translate.parse,
  com.linghushaoxia.et.translate.search,
  com.linghushaoxia.et.translate.util,
- com.linghushaoxia.et.translate.view
+ com.linghushaoxia.et.translate.view,
+ com.alibaba.fastjson
+ 
