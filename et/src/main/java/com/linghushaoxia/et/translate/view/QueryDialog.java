@@ -18,9 +18,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
 import com.linghushaoxia.et.translate.Activator;
 import com.linghushaoxia.et.translate.search.Search;
-import com.linghushaoxia.et.translate.util.CodeUtil;
 import com.linghushaoxia.et.translate.util.PropertiesUtil;
 import com.linghushaoxia.et.translate.util.ValidateUtil;
 
@@ -132,13 +132,8 @@ public class QueryDialog extends Dialog{
 					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "提示", "请输入要查询的内容");
 					return;
 				}
-				if(CodeUtil.containsChinese(qtext)){
-					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "提示", "暂不支持翻译中文");
-					return;
-				}
 				//查询
-				Search search = new Search();
-				resultTextText.setText(search.serachKing(qtext));
+				resultTextText.setText(Search.serach(qtext));
 				super.mouseDown(e);
 			}
 		});

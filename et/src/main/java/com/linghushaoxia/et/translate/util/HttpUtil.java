@@ -7,13 +7,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import com.linghushaoxia.et.translate.model.Dict;
-import com.linghushaoxia.et.translate.model.KingDictXml;
-import com.linghushaoxia.et.translate.parse.xml.Parse;
 /**
  * 功能说明：http请求工具
  * @author:linghushaoxia
@@ -22,6 +17,66 @@ import com.linghushaoxia.et.translate.parse.xml.Parse;
  *
  */
 public class HttpUtil {
+    /**
+     * 
+     * 功能说明:发送get请求
+     * @param url
+     * 远程地址
+     * @param mapParas
+     * 参数
+     * @return String
+     * @time:2016年12月22日下午10:38:33
+     * @author:linghushaoxia
+     * @exception:
+     *
+     */
+    public static String httpGet(String url,String params){
+  	  //返回结果
+  	  String result = null;
+  	  BufferedReader reader=null;
+  	  try {
+  		  /**
+  		   * 组装请求参数
+  		   */
+  		  StringBuilder builder = new StringBuilder(30);
+  		  builder.append(url).append("?").append(params);
+  		  //打开连接
+  		  HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(builder.toString()).openConnection();
+  		  /**
+  		   * 设置通用参数
+  		   */
+  		  httpURLConnection.setRequestProperty("Charset", "UTF-8");
+  		  httpURLConnection.setRequestProperty("Accept", "*/*");
+  		  httpURLConnection.setRequestProperty("connection", "Keep-Alive");
+  		  httpURLConnection.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+  		  httpURLConnection.setRequestMethod("GET");
+  		  /**
+		   * 超时时间
+		   */
+		  httpURLConnection.setConnectTimeout(3000);
+		  httpURLConnection.setReadTimeout(2000);
+  		  httpURLConnection.connect();
+  		  reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+  		  String temp=null;
+  		  StringBuilder resultBuilder = new StringBuilder();
+  		  while ((temp=reader.readLine())!=null) {
+  			  resultBuilder.append(temp).append("\n");
+  		  }
+  		  result = resultBuilder.toString();
+  	} catch (Exception e) {
+  		e.printStackTrace();
+  	}finally{
+  		if (reader!=null) {
+  			try {
+  				reader.close();
+  			} catch (IOException e) {
+  				// TODO Auto-generated catch block
+  				e.printStackTrace();
+  			}
+  		}
+  	}
+  	  return result;
+    }
     /**
      * 
      * 功能说明:发送get请求
@@ -273,15 +328,4 @@ public class HttpUtil {
 	}
 	  return result;
 }
-    public static void main(String[] args) {
-	Map<String, String> mapParas = new HashMap<String, String>();
-	mapParas.put("key", "CC4F915C575ACA633610E42A920E20A6");
-	mapParas.put("w", "word");
-	mapParas.put("type", "xml");
-	InputStream inputStream=  HttpUtil.httpGetStream("http://dict-co.iciba.com/api/dictionary.php", mapParas);
-	KingDictXml kingDictXml= Parse.xmlToBean(inputStream, KingDictXml.class);
-	Dict dict= Parse.bussinessToViewModel(kingDictXml);
-	System.out.println(dict);
-    }
-
 }

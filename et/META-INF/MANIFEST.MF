@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: translate
 Bundle-SymbolicName: Et-translate;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.2.0
 Bundle-Activator: com.linghushaoxia.et.translate.Activator
 Bundle-Vendor: 令狐少侠
 Require-Bundle: org.eclipse.ui,
@@ -15,8 +15,8 @@ Import-Package: org.eclipse.core.resources,
 Export-Package: 
  com.linghushaoxia.et.translate,
  com.linghushaoxia.et.translate.cache,
- com.linghushaoxia.et.translate.model,
- com.linghushaoxia.et.translate.parse.xml,
+ com.linghushaoxia.et.translate.model.king,
+ com.linghushaoxia.et.translate.parse,
  com.linghushaoxia.et.translate.search,
  com.linghushaoxia.et.translate.util,
  com.linghushaoxia.et.translate.view
