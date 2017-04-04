@@ -22,8 +22,8 @@ public class HttpUtil {
      * 功能说明:发送get请求
      * @param url
      * 远程地址
-     * @param mapParas
-     * 参数
+     * @param params
+     * kay=value&形式的参数串
      * @return String
      * @time:2016年12月22日下午10:38:33
      * @author:linghushaoxia
@@ -173,6 +173,81 @@ public class HttpUtil {
 		  result = httpURLConnection.getInputStream();
 	} catch (Exception e) {
 		e.printStackTrace();
+	}
+	  return result;
+  }
+    /**
+     * 
+     * 功能说明:发送post请求
+     * @param url
+     * 请求的地址
+     * @param mapParas
+     * 参数map
+     * @return String
+     * 返回结果
+     * @time:2016年12月24日下午12:54:15
+     * @author:linghushaoxia
+     * @exception:
+     *
+     */
+    public static String httpPost(String url,String params){
+	  //返回结果
+	  String result = null;
+	  //发送请求参数
+	  PrintWriter printWriter =null;
+	  //读取返回的输入流
+	  BufferedReader reader=null;
+	  try {
+		  //打开连接
+		  HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
+		  /**
+		   * 设置通用参数
+		   */
+		  httpURLConnection.setRequestProperty("Charset", "UTF-8");
+		  httpURLConnection.setRequestProperty("accept", "*/*");
+		  httpURLConnection.setRequestProperty("connection", "Keep-Alive");
+		  httpURLConnection.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+		 /**
+		  * post请求需要添加
+		  */
+		  httpURLConnection.setDoInput(true);
+		  httpURLConnection.setDoOutput(true);
+		  httpURLConnection.setRequestMethod("POST");
+		  /**
+		   * 超时时间
+		   */
+		  httpURLConnection.setConnectTimeout(3000);
+		  httpURLConnection.setReadTimeout(2000);
+		  /**
+		   * 发送请求
+		   */
+		  printWriter = new PrintWriter(httpURLConnection.getOutputStream());
+		  printWriter.write(params);
+		  printWriter.flush();
+		  /**
+		   * 接收请求参数
+		   */
+		  reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+		  String temp=null;
+		  StringBuilder resultBuilder = new StringBuilder();
+		  while ((temp=reader.readLine())!=null) {
+			  resultBuilder.append(temp).append("\n");
+		  }
+		  result = resultBuilder.toString();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally{
+		if (reader!=null) {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (printWriter!=null) {
+		    printWriter.close();
+		}
 	}
 	  return result;
   }

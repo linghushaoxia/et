@@ -44,15 +44,13 @@ public class Search {
 	word = word.trim().toLowerCase();
 	//从缓存获取
 	dict=DictCache.getDict(word);
-	/**
-	 * 查询金山词霸
+	/**进行查询
+	 * 1、单词使用金山词霸
+	 * 2、长句子使用google
 	 */
 	if (dict==null) {
 	    try {
-		/**
-		 * 1、单词使用金山词霸
-		 * 2、长句子使用google
-		 */
+		
 		if (selectEngine(word).equals(SearchEngine.GOOGLE.toString())) {
 		    dict = searchByGoogle(word);
 		}else {
@@ -148,7 +146,7 @@ public class Search {
 	    builder.append("kc=0&");
 	    builder.append("tk=").append(CodeUtil.generateToken(word)).append("&");
 	    builder.append("q=").append(URLEncoder.encode(word, "UTF-8"));
-	    String json = HttpUtil.httpGet(PropertiesUtil.getConfigValue("google_http_url"), builder.toString());
+	    String json = HttpUtil.httpPost(PropertiesUtil.getConfigValue("google_http_url"), builder.toString());
 	    /**
 	     * 返回结果进行解析
 	     */
