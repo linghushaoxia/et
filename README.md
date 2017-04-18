@@ -4,3 +4,8 @@
 中英文单词、句子互译。
 # 后续计划
 支持输入计算式的四则混合运算的计算器。
+#使用过程
+##安装
+![image](https://github.com/linghushaoxia/linghushaoxia.github.io/blob/master/static/public/image/et-install.gif)
+##使用
+![image](https://github.com/linghushaoxia/linghushaoxia.github.io/blob/master/static/public/image/et-use.gif)
